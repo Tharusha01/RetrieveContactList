@@ -12,11 +12,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
     var listView: ListView? = null
-    var StoreContacts: ArrayList<String>? = null
+    var StoreContacts: ArrayList<String> = ArrayList()
     var arrayAdapter: ArrayAdapter<String>? = null
     var button:Button? = null
 
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity() {
         EnableRuntimePermission()
 
         button!!.setOnClickListener {
+            StoreContacts.clear()
             GetContactsIntoArrayList()
+            StoreContacts.sort()
             arrayAdapter = ArrayAdapter(
                 this@MainActivity,
                 R.layout.contact_items_listview,
@@ -61,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                 phonenumber =
                     cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                StoreContacts!!.add("$name : $phonenumber")
+                StoreContacts.add("$name : $phonenumber")
             }
         }
         cursor?.close()
