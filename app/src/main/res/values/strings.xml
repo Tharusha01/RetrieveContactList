@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Contact Retriever</string>
+
+    <string name="button_load_contacts" translatable="false">Click here to load Contact list</string>
+
+    <string name="list_item_name" translatable="false">Name :</string>
+
+</resources>
